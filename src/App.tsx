@@ -5,7 +5,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { XyzRealityPage, HomePage } from "./pages";
-import { SideBar } from "./components";
+import { SideBar, TabBar } from "./components";
 import styles from "./components/tabBar/TabBar.module.css";
 
 const AppLayout = () => {
@@ -15,7 +15,7 @@ const AppLayout = () => {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       {showSidebar && <SideBar />}
-
+      <TabBar className={styles.tabbar} />
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <main style={{ flex: 1, overflow: "auto" }}>
           <Routes>
