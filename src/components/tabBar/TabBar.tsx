@@ -8,10 +8,7 @@ interface TabBarProps {
 const TabBar = ({ className }: TabBarProps) => {
   const [activeTab, setActiveTab] = useState("xyz-reality");
 
-  const tabs = [
-    { id: "xyz-reality", name: "XYZReality.tsx" },
-    { id: "readme", name: "README.md" },
-  ];
+  const tabs = [{ id: "xyz-reality", name: "XYZReality" }];
 
   return (
     <div className={`${styles.tabbar} ${className || ""}`}>

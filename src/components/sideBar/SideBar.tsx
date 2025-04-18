@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import styles from "./SideBar.module.css";
+import { FileNames, FolderNames, Paths } from "../../utils";
 
 const SideBar = () => {
   const [openFolders, setOpenFolders] = useState({
-    experience: false,
+    experience: true,
     education: false,
     skills: false,
   });
@@ -25,17 +26,15 @@ const SideBar = () => {
             className={styles.folder}
             onClick={() => toggleFolder("experience")}
           >
-            {openFolders.experience ? "▼" : "▶"} 📁 Experience
+            {openFolders.experience ? "▼" : "▶"} 📁 {FolderNames.EXPERIENCE}
           </div>
           {openFolders.experience && (
             <ul className={styles.nested}>
               <li>
-                <NavLink to="/experience/xyz-reality">📄 XYZReality</NavLink>
+                <NavLink to={Paths.XYZ}>📄 {FileNames.XYZ}</NavLink>
               </li>
               <li>
-                <NavLink to="/experience/fundamentalvr">
-                  📄 FundamentalVR
-                </NavLink>
+                <NavLink to={Paths.FVR}>📄 {FileNames.FVR}</NavLink>
               </li>
             </ul>
           )}
@@ -46,12 +45,14 @@ const SideBar = () => {
             className={styles.folder}
             onClick={() => toggleFolder("education")}
           >
-            {openFolders.education ? "▼" : "▶"} 📁 Education
+            {openFolders.education ? "▼" : "▶"} 📁 {FolderNames.EDUCATION}
           </div>
           {openFolders.education && (
             <ul className={styles.nested}>
               <li>
-                <NavLink to="/education/uni">📄 UniHerts</NavLink>
+                <NavLink to={Paths.UNIVERSITY}>
+                  📄 {FileNames.UNIVERSITY}
+                </NavLink>
               </li>
             </ul>
           )}
@@ -59,15 +60,19 @@ const SideBar = () => {
 
         <li>
           <div className={styles.folder} onClick={() => toggleFolder("skills")}>
-            {openFolders.skills ? "▼" : "▶"} 📁 Skills
+            {openFolders.skills ? "▼" : "▶"} 📁 {FolderNames.SKILLS}
           </div>
           {openFolders.skills && (
             <ul className={styles.nested}>
               <li>
-                <NavLink to="/skills/dev">📄 dev-skills</NavLink>
+                <NavLink to={Paths.DEV_SKILLS}>
+                  📄 {FileNames.DEV_SKILLS}
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/skills/soft">📄 soft-skills</NavLink>
+                <NavLink to={Paths.SOFT_SKILLS}>
+                  📄 {FileNames.SOFT_SKILLS}
+                </NavLink>
               </li>
             </ul>
           )}
