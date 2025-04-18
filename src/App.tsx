@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { XyzRealityPage, HomePage } from "./pages";
+import { SideBar } from "./components";
+import styles from "./components/tabBar/TabBar.module.css";
 
-function App() {
+const AppLayout = () => {
+  const location = useLocation();
+  const showSidebar = location.pathname !== "/";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display: "flex", height: "100vh" }}>
+      {showSidebar && <SideBar />}
+
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <main style={{ flex: 1, overflow: "auto" }}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/experience/xyz-reality"
+              element={<XyzRealityPage />}
+            />
+          </Routes>
+        </main>
+      </div>
     </div>
   );
-}
+};
+
+const App = () => (
+  <Router>
+    <AppLayout />
+  </Router>
+);
 
 export default App;

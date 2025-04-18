@@ -1,0 +1,8 @@
+.xyzRealityPage {
+  background-color: var(--color-background);
+  height: 100%;
+  box-sizing: border-box;
+}
+.xyzRealityPage h1 {
+  padding-left: 1rem;
+}
