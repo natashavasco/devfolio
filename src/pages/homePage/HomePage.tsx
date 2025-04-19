@@ -1,4 +1,4 @@
-import "../../styles/dracula-theme.css";
+import "../../styles/theme.css";
 import { VscFolderOpened } from "react-icons/vsc";
 import { useNavigate } from "react-router-dom";
 import styles from "./HomePage.module.css";

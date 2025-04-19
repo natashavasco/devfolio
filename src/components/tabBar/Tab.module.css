@@ -12,6 +12,7 @@
   transition: background-color 0.2s ease;
   color: var(--color-foreground);
   text-decoration: none;
+  border-radius: 0.75rem 0.75rem 0 0;
 }
 
 .tab > * {
@@ -21,5 +22,5 @@
 
 .tab.active {
   background-color: var(--color-background);
-  border-top: 2px solid var(--color-pink);
+  border-top: 2px solid var(--color-purple);
 }

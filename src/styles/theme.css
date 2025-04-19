@@ -9,6 +9,14 @@
   --color-orange: #ffb86c;
   --color-pink: #ff79c6;
   --color-purple: #bd93f9;
+
+  --color-sub-cyan: #70d2e3; /* softer than #8be9fd */
+  --color-sub-purple: #9c83d6; /* softer than #bd93f9 */
+  --color-sub-pink: #e56bb8; /* softer than #ff79c6 */
+  --color-sub-orange: #f0a46e; /* softer than #ffb86c */
+  --color-sub-green: #5fe09d; /* toned-down from #50fa7b */
+  --color-sub-yellow: #e4e572; /* less punch than #f1fa8c */
+
   --color-red: #ff5555;
   --color-yellow: #f1fa8c;
 
@@ -23,21 +31,25 @@ body {
   padding: 0;
 }
 h1 {
-  color: var(--color-pink);
+  color: var(--color-purple);
   font-size: 2.5rem;
 }
 
 h2 {
-  color: var(--color-purple);
+  color: var(--color-sub-purple);
   font-size: 2rem;
 }
 
 h3 {
-  color: var(--color-yellow);
+  color: var(--color-cyan);
   font-size: 1.5rem;
 }
 
 h4 {
-  color: var(--color-purple);
+  color: var(--color-sub-pink);
   font-size: 1.2rem;
+}
+p {
+  color: var(--color-sub-cyan);
+  font-size: 1rem;
 }
