@@ -12,14 +12,23 @@ const Tab = ({ file, activeTab, setActiveTab }: TabProps) => {
   return (
     <div
       key={file.name}
-      className={`${styles.tab} ${
-        activeTab === file.name ? styles.active : ""
-      }`}
       onClick={() =>
         setActiveTab(file.folder as FolderNames, file.name as FileNames)
       }
     >
-      <NavLink to={`/${file.folder}/${file.name}`}>{file.pageTitle}</NavLink>
+      <NavLink
+        to={`/${file.folder}/${file.name}`}
+        className={({ isActive }) =>
+          `${styles.tab} ${
+            isActive || activeTab === file.name ? styles.active : ""
+          }`
+        }
+        onClick={() =>
+          setActiveTab(file.folder as FolderNames, file.name as FileNames)
+        }
+      >
+        {file.pageTitle}
+      </NavLink>
     </div>
   );
 };
