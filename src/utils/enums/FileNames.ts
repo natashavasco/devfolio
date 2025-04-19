@@ -1,4 +1,5 @@
 export enum FileNames {
+  NONE = "",
   XYZ = "xyz-reality",
   FVR = "fundamentalvr",
   CMR = "cmr",

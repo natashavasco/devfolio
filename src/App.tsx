@@ -17,6 +17,8 @@ import {
 import { SideBar, TabBar } from "./components";
 import styles from "./components/tabBar/TabBar.module.css";
 import { Paths } from "./utils";
+import { PageProvider } from "./context/PageContext";
+
 const AppLayout = () => {
   const location = useLocation();
   const showSidebar = location.pathname !== "/";
@@ -46,7 +48,9 @@ const AppLayout = () => {
 
 const App = () => (
   <Router>
-    <AppLayout />
+    <PageProvider>
+      <AppLayout />
+    </PageProvider>
   </Router>
 );
 

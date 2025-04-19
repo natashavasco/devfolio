@@ -1,28 +1,24 @@
-import { useState } from "react";
 import styles from "./TabBar.module.css";
+import Tab from "./Tab";
+import { usePageContext } from "../../context/PageContext";
 
 interface TabBarProps {
   className?: string;
 }
 
 const TabBar = ({ className }: TabBarProps) => {
-  const [activeTab, setActiveTab] = useState("xyz-reality");
-
-  const tabs = [{ id: "xyz-reality", name: "XYZReality" }];
+  const { currentFile, setCurrentPath, files } = usePageContext();
 
   return (
     <div className={`${styles.tabbar} ${className || ""}`}>
       <div className={styles.tabs}>
-        {tabs.map((tab) => (
-          <div
-            key={tab.id}
-            className={`${styles.tab} ${
-              activeTab === tab.id ? styles.active : ""
-            }`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.name}
-          </div>
+        {files.map((file) => (
+          <Tab
+            key={file.name}
+            file={file}
+            activeTab={currentFile}
+            setActiveTab={setCurrentPath}
+          />
         ))}
       </div>
     </div>

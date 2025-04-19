@@ -1,21 +1,42 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SideBar.module.css";
 import { FileNames, FolderNames, Paths } from "../../utils";
+import { usePageContext } from "../../context/PageContext";
 
-const SideBar = () => {
+const SideBar: React.FC = () => {
+  const { currentFile, currentFolder, setCurrentPath, files } =
+    usePageContext();
   const [openFolders, setOpenFolders] = useState({
-    experience: true,
-    education: false,
-    skills: false,
+    [FolderNames.EXPERIENCE]: true,
+    [FolderNames.EDUCATION]: false,
+    [FolderNames.SKILLS]: false,
   });
 
-  const toggleFolder = (folder: keyof typeof openFolders) => {
+  useEffect(() => {
+    if (currentFolder === FolderNames.NONE) return;
     setOpenFolders((prev) => ({
       ...prev,
-      [folder]: !prev[folder],
+      [currentFolder]: true,
     }));
-  };
+  }, [currentFolder]);
+
+  function toggleFolder(folder: FolderNames) {
+    if (folder === FolderNames.NONE) return;
+
+    const folderKey = folder.toString() as keyof typeof openFolders;
+    setOpenFolders((prev) => ({
+      ...prev,
+      [folderKey]: !prev[folderKey],
+    }));
+  }
+
+  function handleFileClick(fileId: FileNames) {
+    setCurrentPath(
+      files.find((file) => file.name === fileId)?.folder as FolderNames,
+      fileId
+    );
+  }
 
   return (
     <nav className={styles.sidebar}>
@@ -24,17 +45,37 @@ const SideBar = () => {
         <li>
           <div
             className={styles.folder}
-            onClick={() => toggleFolder("experience")}
+            onClick={() => toggleFolder(FolderNames.EXPERIENCE)}
           >
-            {openFolders.experience ? "▼" : "▶"} 📁 {FolderNames.EXPERIENCE}
+            {openFolders.experience ? "▼" : "▶"} 📁 Experience
           </div>
           {openFolders.experience && (
             <ul className={styles.nested}>
               <li>
-                <NavLink to={Paths.XYZ}>📄 {FileNames.XYZ}</NavLink>
+                <NavLink
+                  to={Paths.XYZ}
+                  className={
+                    currentFile === FileNames.XYZ
+                      ? styles.selected
+                      : FileNames.NONE
+                  }
+                  onClick={() => handleFileClick(FileNames.XYZ)}
+                >
+                  📄 XYZReality
+                </NavLink>
               </li>
               <li>
-                <NavLink to={Paths.FVR}>📄 {FileNames.FVR}</NavLink>
+                <NavLink
+                  to={Paths.FVR}
+                  className={
+                    currentFile === FileNames.FVR
+                      ? styles.selected
+                      : FileNames.NONE
+                  }
+                  onClick={() => handleFileClick(FileNames.FVR)}
+                >
+                  📄 FundamentalVR
+                </NavLink>
               </li>
             </ul>
           )}
@@ -43,15 +84,23 @@ const SideBar = () => {
         <li>
           <div
             className={styles.folder}
-            onClick={() => toggleFolder("education")}
+            onClick={() => toggleFolder(FolderNames.EDUCATION)}
           >
-            {openFolders.education ? "▼" : "▶"} 📁 {FolderNames.EDUCATION}
+            {openFolders.education ? "▼" : "▶"} 📁 Education
           </div>
           {openFolders.education && (
             <ul className={styles.nested}>
               <li>
-                <NavLink to={Paths.UNIVERSITY}>
-                  📄 {FileNames.UNIVERSITY}
+                <NavLink
+                  to={Paths.UNIVERSITY}
+                  className={
+                    currentFile === FileNames.UNIVERSITY
+                      ? styles.selected
+                      : FileNames.NONE
+                  }
+                  onClick={() => handleFileClick(FileNames.UNIVERSITY)}
+                >
+                  📄 UniHerts
                 </NavLink>
               </li>
             </ul>
@@ -59,19 +108,38 @@ const SideBar = () => {
         </li>
 
         <li>
-          <div className={styles.folder} onClick={() => toggleFolder("skills")}>
-            {openFolders.skills ? "▼" : "▶"} 📁 {FolderNames.SKILLS}
+          <div
+            className={styles.folder}
+            onClick={() => toggleFolder(FolderNames.SKILLS)}
+          >
+            {openFolders.skills ? "▼" : "▶"} 📁 Skills
           </div>
           {openFolders.skills && (
             <ul className={styles.nested}>
               <li>
-                <NavLink to={Paths.DEV_SKILLS}>
-                  📄 {FileNames.DEV_SKILLS}
+                <NavLink
+                  to={Paths.DEV_SKILLS}
+                  className={
+                    currentFile === FileNames.DEV_SKILLS
+                      ? styles.selected
+                      : FileNames.NONE
+                  }
+                  onClick={() => handleFileClick(FileNames.DEV_SKILLS)}
+                >
+                  📄 DevSkills
                 </NavLink>
               </li>
               <li>
-                <NavLink to={Paths.SOFT_SKILLS}>
-                  📄 {FileNames.SOFT_SKILLS}
+                <NavLink
+                  to={Paths.SOFT_SKILLS}
+                  className={
+                    currentFile === FileNames.SOFT_SKILLS
+                      ? styles.selected
+                      : FileNames.NONE
+                  }
+                  onClick={() => handleFileClick(FileNames.SOFT_SKILLS)}
+                >
+                  📄 SoftSkills
                 </NavLink>
               </li>
             </ul>

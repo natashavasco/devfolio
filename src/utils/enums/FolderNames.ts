@@ -1,5 +1,6 @@
 export enum FolderNames {
-  EXPERIENCE = "Experience",
-  EDUCATION = "Education",
-  SKILLS = "Skills",
+  NONE = "",
+  EXPERIENCE = "experience",
+  EDUCATION = "education",
+  SKILLS = "skills",
 }
